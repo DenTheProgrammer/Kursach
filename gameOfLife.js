@@ -40,11 +40,14 @@ field.addEventListener("click",(e)=>{
 
 
 function nextStep(){
-    let aliveCells=document.querySelectorAll(".field__cell_alive");//returns NodeList
-    // console.log(aliveCells);
-    for(let i=0;i<aliveCells.length;i++){
-        // console.log(aliveCells[i].getAttribute("id"));
-        getSiblings(aliveCells[i]);
+    let interestingCells=getInterestingCells();
+    for(let i=0;i<interestingCells.length;i++){
+        let aliveSiblingCount=getAliveSiblings(interestingCells[i]).length;
+        if(aliveSiblingCount===3){
+            interestingCells[i].classList.add("field__cell_alive");
+        }else if(aliveSiblingCount<2||aliveSiblingCount>3){
+            interestingCells[i].classList.remove("field__cell_alive");
+        }
     }
 }
 
@@ -65,5 +68,30 @@ function getSiblings(cell){
 
     return cellSiblings;
 }
+
+function getAliveSiblings(cell){
+    let siblings=getSiblings(cell),
+        aliveSiblings=[];
+
+    for (let i = 0; i < siblings.length; i++){
+        if(siblings[i].classList.contains("field__cell_alive")){
+            aliveSiblings.push(siblings[i])
+        }
+    }
+    return aliveSiblings;
+}
+
+function getInterestingCells(){
+    let aliveCells=[...document.querySelectorAll(".field__cell_alive")],//returns NodeList
+        aliveCellsSiblings=[];
+    for(let i=0;i<aliveCells.length;i++){
+        aliveCellsSiblings.push(...getSiblings(aliveCells[i]));
+    }
+
+    return aliveCells.concat(aliveCellsSiblings);
+}
+
+
+
 renderField(GameInfo.fieldSize.x,GameInfo.fieldSize.y);
 
