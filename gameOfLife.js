@@ -88,7 +88,17 @@ function getInterestingCells(){
         aliveCellsSiblings.push(...getSiblings(aliveCells[i]));
     }
 
-    return aliveCells.concat(aliveCellsSiblings);
+    let interestingCells= aliveCells.concat(aliveCellsSiblings);
+    let resultObj={};
+    for(let i=0;i<interestingCells;i++){
+        if(interestingCells[i].classlist.contains("field__cell_alive")){
+            resultObj[interestingCells]="alive";
+        }else{
+            resultObj[interestingCells]="dead";
+        }
+    }
+
+    return resultObj;
 }
 
 
