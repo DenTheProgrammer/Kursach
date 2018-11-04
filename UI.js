@@ -20,9 +20,21 @@ startBtn.addEventListener("mousedown",()=>{//not "click" because of DnD eventLis
 
 });
 
-applySizeBtn.addEventListener("click",()=>{
+applySizeBtn.addEventListener("mousedown",()=>{
     GameInfo.fieldSize.x=sizeXInput.value;
     GameInfo.fieldSize.y=sizeYInput.value;
+    field.innerHTML="";
+    renderField();
+});
+
+addEventListener("keydown",(e)=>{
+    if(e.key==="+"){
+        console.log("zoom-in");
+        GameInfo.cellSize+=1;
+    }else if(e.key==="-"){
+        console.log("zoom-out");
+        GameInfo.cellSize-=1;
+    }
     field.innerHTML="";
     renderField();
 });

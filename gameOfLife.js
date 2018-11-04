@@ -5,7 +5,7 @@ let GameInfo={
       x:50,
       y:50
    },
-    cellSize:"20px",
+    cellSize:20,
     aliveCellsCount:0,
 
 };
@@ -14,20 +14,18 @@ let GameInfo={
 const field= document.querySelector(".field");
 //field creation
 function renderField() {
-
-   for(let i=0;i<GameInfo.fieldSize.x;i++){
+   for(let i=0;i<GameInfo.fieldSize.y;i++){
        let rowOfCells=document.createElement("div");
        rowOfCells.className="field__row";
-       for (let j=0;j<GameInfo.fieldSize.y;j++){
+       for (let j=0;j<GameInfo.fieldSize.x;j++){
            let cell=document.createElement("div");
            cell.className="field__cell";
            cell.id=`x${j}y${i}`;//id with cords
-           cell.style.width=cell.style.height=GameInfo.cellSize;
+           cell.style.width=cell.style.height=GameInfo.cellSize+"px";
             rowOfCells.appendChild(cell);
        }
        field.appendChild(rowOfCells);
    }
-
 }
 
 //
