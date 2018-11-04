@@ -13,12 +13,12 @@ let GameInfo={
 
 const field= document.querySelector(".field");
 //field creation
-function renderField(x,y) {
+function renderField() {
 
-   for(let i=0;i<y;i++){
+   for(let i=0;i<GameInfo.fieldSize.x;i++){
        let rowOfCells=document.createElement("div");
        rowOfCells.className="field__row";
-       for (let j=0;j<x;j++){
+       for (let j=0;j<GameInfo.fieldSize.y;j++){
            let cell=document.createElement("div");
            cell.className="field__cell";
            cell.id=`x${j}y${i}`;//id with cords
@@ -125,8 +125,9 @@ function getInterestingCells(){
 
 
 
-renderField(GameInfo.fieldSize.x,GameInfo.fieldSize.y);
+renderField();
 
 function autoGenerate(interval) {
-    setInterval(()=>{nextGeneration()},interval)
+    let timer=setInterval(()=>{nextGeneration()},interval);
+    return timer;//for stopping
 }

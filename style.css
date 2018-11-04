@@ -21,3 +21,16 @@
 .field__row{
     display: flex;
 }
+
+.interface{
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    padding: 20px;
+    background: gray;
+}
+.interface form{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+}

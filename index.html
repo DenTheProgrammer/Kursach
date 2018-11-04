@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <title>Game of Life</title>
     <script src="gameOfLife.js" defer></script>
+    <script src="UI.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="game">
-        <div class="game__interface">
+        <div class="interface">
+            <form action="#">
 
+                <input type="number" class="interface__field-size-X" title="X" value="50">
+                <input type="number" class="interface__field-size-Y" title="Y" value="50">
+                <button class="interface__apply-size">Apply field size</button>
+                <input type="number" class="interface__interval" title="generation interval" value="200">
+                <button class="interface__start-btn">Start</button>
+            </form>
         </div>
         <div class="field">
 
