@@ -2,8 +2,8 @@
 let GameInfo={
    gameIsRunning:false,
    fieldSize:{
-      x:7,
-      y:7
+      x:10,
+      y:10
    },
     cellSize:"20px",
     aliveCellsCount:0,
@@ -39,21 +39,41 @@ field.addEventListener("click",(e)=>{
 });
 
 
-function nextStep(){
+function nextGeneration(){
     let interestingCells=getInterestingCells();
-    for(let i=0;i<interestingCells.length;i++){
-        let aliveSiblingCount=getAliveSiblings(interestingCells[i]).length;
+    function getCellById(id){
+        return document.getElementById(`x${id[1]}y${id[3]}`)
+    }
+
+    let nexGen={};
+    for(let cellId in interestingCells){
+        let currentCell=getCellById(cellId);
+        let aliveSiblingCount=getAliveSiblings(currentCell).length;
         if(aliveSiblingCount===3){
-            interestingCells[i].classList.add("field__cell_alive");
+            nexGen[cellId]="alive";
         }else if(aliveSiblingCount<2||aliveSiblingCount>3){
-            interestingCells[i].classList.remove("field__cell_alive");
+            nexGen[cellId]="dead";
+        }
+        else if(interestingCells[cellId]==="alive"&&aliveSiblingCount===2){
+            nexGen[cellId]="alive";
+        }
+
+    }
+    console.log(nexGen);
+    for(let cellId in nexGen){
+
+        if(nexGen[cellId]==="alive"){
+            getCellById(cellId).classList.add("field__cell_alive");
+        }else if(nexGen[cellId]==="dead"){
+            getCellById(cellId).classList.remove("field__cell_alive");
         }
     }
+    // return nexGen;
 }
 
 
 function getSiblings(cell){
-    const cellCordX=parseInt(cell.getAttribute("id")[1]),
+    const cellCordX=parseInt(cell.getAttribute("id")[1]),//TODO valid get cords for field-size>9
         cellCordY=parseInt(cell.getAttribute("id")[3]);
     let cellSiblings=[document.getElementById(`x${cellCordX}y${cellCordY-1}`),
         document.getElementById(`x${cellCordX+1}y${cellCordY-1}`),
@@ -106,3 +126,6 @@ function getInterestingCells(){
 
 renderField(GameInfo.fieldSize.x,GameInfo.fieldSize.y);
 
+function autoGenerate(interval) {
+    setInterval(()=>{nextGeneration()},interval)
+}
