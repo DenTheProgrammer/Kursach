@@ -5,19 +5,23 @@
     <title>Game of Life</title>
     <script src="gameOfLife.js" defer></script>
     <script src="UI.js" defer></script>
+    <script src="DragnDrop.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="game">
         <div class="interface">
+            <h3>Панель управления</h3>
             <form action="#">
-
-                <input type="number" class="interface__field-size-X" title="X" value="50">
-                <input type="number" class="interface__field-size-Y" title="Y" value="50">
-                <button class="interface__apply-size">Apply field size</button>
-                <input type="number" class="interface__interval" title="generation interval" value="200">
-                <button class="interface__start-btn">Start</button>
+                <label for="X">Клеток по горизонтали:</label>
+                <input type="number" class="interface__field-size-X" title="X" id="X" value="50">
+                <label for="Y">Клеток по вертикали:</label>
+                <input type="number" class="interface__field-size-Y" title="Y" id="Y" value="50">
+                <button class="interface__apply-size">Применить размеры</button>
+                <label for="interval">Интервал:</label>
+                <input type="number" class="interface__interval" title="generation interval" id="interval" value="200">
+                <button class="interface__start-btn">Старт</button>
             </form>
         </div>
         <div class="field">

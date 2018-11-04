@@ -6,15 +6,15 @@ const startBtn=document.querySelector(".interface__start-btn"),
 let timer; //for Start/Stop
 
 
-startBtn.addEventListener("click",()=>{
+startBtn.addEventListener("mousedown",()=>{//not "click" because of DnD eventListener
     let label=startBtn.innerText;
 
-    if(label==="Start"){
+    if(label==="Старт"){
         timer=autoGenerate(intervalInput.value);
-        label="Stop";
-    }else if(label==="Stop"){
+        label="Стоп";
+    }else if(label==="Стоп"){
         clearInterval(timer);
-        label="Start";
+        label="Старт";
     }
     startBtn.innerText=label;
 

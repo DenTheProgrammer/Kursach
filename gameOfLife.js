@@ -128,6 +128,7 @@ function getInterestingCells(){
 renderField();
 
 function autoGenerate(interval) {
-    let timer=setInterval(()=>{nextGeneration()},interval);
-    return timer;//for stopping
+    return setInterval(() => {
+        nextGeneration()
+    }, interval);//for stopping
 }

@@ -27,10 +27,12 @@
     top: 50px;
     left: 50px;
     padding: 20px;
-    background: gray;
+    background: #7c8049;
+    border-radius: 5px;
+    color: #482100;
 }
 .interface form{
     display: flex;
     flex-direction: column;
-    width: 100px;
+    width: 200px;
 }
