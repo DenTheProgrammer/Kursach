@@ -4,11 +4,13 @@
     padding: 0;
 }
 
-
+.field{
+    /*border: solid 1px black;*/
+}
 .field__cell{
-    width: 25px;
-    height: 25px;
-    border: solid 1px black;
+    /*width: 10px;*/
+    /*height: 10px;*/
+    border: solid 1px gray;
     background: white;
 }
 

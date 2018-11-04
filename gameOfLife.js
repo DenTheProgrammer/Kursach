@@ -2,8 +2,8 @@
 let GameInfo={
    gameIsRunning:false,
    fieldSize:{
-      x:10,
-      y:10
+      x:50,
+      y:50
    },
     cellSize:"20px",
     aliveCellsCount:0,
@@ -22,6 +22,7 @@ function renderField(x,y) {
            let cell=document.createElement("div");
            cell.className="field__cell";
            cell.id=`x${j}y${i}`;//id with cords
+           cell.style.width=cell.style.height=GameInfo.cellSize;
             rowOfCells.appendChild(cell);
        }
        field.appendChild(rowOfCells);
@@ -42,7 +43,7 @@ field.addEventListener("click",(e)=>{
 function nextGeneration(){
     let interestingCells=getInterestingCells();
     function getCellById(id){
-        return document.getElementById(`x${id[1]}y${id[3]}`)
+        return document.getElementById(`x${+(id.match(/(?<=x)\d+/gi))}y${+(id.match(/(?<=y)\d+/gi))}`)
     }
 
     let nexGen={};
@@ -73,8 +74,8 @@ function nextGeneration(){
 
 
 function getSiblings(cell){
-    const cellCordX=parseInt(cell.getAttribute("id")[1]),//TODO valid get cords for field-size>9
-        cellCordY=parseInt(cell.getAttribute("id")[3]);
+    const cellCordX=+(cell.getAttribute("id").match(/(?<=x)\d+/gi)),
+        cellCordY=+(cell.getAttribute("id").match(/(?<=y)\d+/gi));
     let cellSiblings=[document.getElementById(`x${cellCordX}y${cellCordY-1}`),
         document.getElementById(`x${cellCordX+1}y${cellCordY-1}`),
         document.getElementById(`x${cellCordX+1}y${cellCordY}`),
